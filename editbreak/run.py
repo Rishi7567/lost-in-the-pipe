@@ -8,6 +8,9 @@ C silent wrong, still parses | S silent wrong, no longer parses | X the applier 
 usage (from the repository root):
     python vendor/fetch_cecelia.py          # once: downloads cecelia's GPL-3.0 file, pinned + hash-checked
     python editbreak/run.py [--workers 4] [--limit N] [--out results/rerun.json]
+                            [--only strict,aider,...] [--applier path/to/mine.py:apply[,...]]
+Test YOUR applier: a function apply(content, old, new) returning the new file text, or None to refuse
+(see examples/my_applier.py). --only skips the slow built-ins; the controls always run.
 """
 import ast
 import difflib
@@ -233,14 +236,47 @@ def refuse_all(ctx, old, new):
     return 'refused', 'control'
 
 
-def build_appliers():
-    aider_ns = load_aider()
-    hermes_pre = load_hermes('hermes_pre')                # load order matters, see load_hermes
-    hermes_now = load_hermes('hermes')
-    return {'strict': strict, 'strict_gate': strict_gate, 'aider': make_aider(aider_ns),
-            'hermes_pre': make_hermes(hermes_pre), 'hermes': make_hermes(hermes_now),
-            'davecode': make_repair_flow(repair_double_escaped), 'cecelia': make_repair_flow(load_cecelia()),
-            'naive': naive, 'ctl_plant': plant, 'ctl_refuse': refuse_all}
+# built-in appliers in BUILD order (hermes_pre before hermes: see load_hermes); built lazily, so --only stays fast
+BUILTIN = {
+    'strict': lambda: strict,
+    'strict_gate': lambda: strict_gate,
+    'aider': lambda: make_aider(load_aider()),
+    'hermes_pre': lambda: make_hermes(load_hermes('hermes_pre')),
+    'hermes': lambda: make_hermes(load_hermes('hermes')),
+    'davecode': lambda: make_repair_flow(repair_double_escaped),
+    'cecelia': lambda: make_repair_flow(load_cecelia()),
+    'naive': lambda: naive,
+    'ctl_plant': lambda: plant,
+    'ctl_refuse': lambda: refuse_all,
+}
+REQUIRED = ('strict', 'ctl_plant', 'ctl_refuse')          # report.py's instrument controls need these in every run
+
+
+def load_external(spec):
+    """'path/to/file.py:function' -> (name, applier). The function takes (content, old, new) and returns the new file
+    text, or None to refuse; an exception counts as a crash (X), never as a refusal."""
+    import importlib.util                                  # noqa: PLC0415
+    path, func = spec.rsplit(':', 1)
+    path = path if os.path.isabs(path) else os.path.join(os.getcwd(), path)
+    name = f'{os.path.splitext(os.path.basename(path))[0]}.{func}'
+    mod_spec = importlib.util.spec_from_file_location(name.replace('.', '_'), path)
+    mod = importlib.util.module_from_spec(mod_spec)
+    mod_spec.loader.exec_module(mod)
+    fn = getattr(mod, func)
+
+    def external(ctx, old, new):
+        out = fn(ctx['content'], old, new)
+        return ('refused', 'returned None') if out is None else ('ok', out)
+    return name, external
+
+
+def build_appliers(only=None, externals=()):
+    """only: built-in names to run (None = all); the REQUIRED controls always run. externals: --applier specs."""
+    out = {n: make() for n, make in BUILTIN.items() if only is None or n in only or n in REQUIRED}
+    for spec in externals:
+        name, fn = load_external(spec)
+        out[name] = fn
+    return out
 
 
 # ------------------------------------------------------------------------------------------------ run
@@ -263,8 +299,8 @@ def hunk_ctx(task, path, start, n_old, new):
 
 
 def worker(job):
-    wid, hunks = job
-    appliers = build_appliers()
+    wid, hunks, only, externals = job
+    appliers = build_appliers(only, externals)
     rows, examples, secs = [], {}, {a: 0.0 for a in appliers}
     t_start = time.time()
     for done, (task, path, start, n_old, old_l, new_l) in enumerate(hunks):
@@ -305,13 +341,18 @@ def main():
     workers = int(args.get('--workers', 4))
     out_arg = args.get('--out', os.path.join('results', 'rerun.json'))
     out = os.path.join(ROOT, out_arg)                       # an absolute --out stays absolute
+    only = set(args['--only'].split(',')) if '--only' in args else None
+    unknown = (only or set()) - set(BUILTIN)
+    if unknown:
+        sys.exit(f'unknown --only applier(s) {sorted(unknown)}; built-ins: {", ".join(BUILTIN)}')
+    externals = [s for s in args.get('--applier', '').split(',') if s]
     hunks = load_hunks()
     if int(args.get('--limit', 0)):
         hunks = hunks[:int(args['--limit'])]
-    load_cecelia()                                         # fail fast, before the pool starts
+    build_appliers(only, externals)                        # fail fast (a missing cecelia file, a bad --applier)
     t0 = time.time()
     with multiprocessing.Pool(workers) as pool:
-        parts = pool.map(worker, [(w, hunks[w::workers]) for w in range(workers)])
+        parts = pool.map(worker, [(w, hunks[w::workers], only, externals) for w in range(workers)])
     rows = [r for p in parts for r in p[0]]
     examples, secs = {}, {}
     for _, ex, sc in parts:

@@ -55,7 +55,13 @@ def pct(k, n):
 
 
 def appliers(rows):
-    return [a for a in ORDER if a in rows[0]['out']]
+    """Built-ins in the fixed ORDER, then any plugged-in (--applier) names; never the two controls."""
+    present = list(rows[0]['out'])
+    return [a for a in ORDER if a in present] + [a for a in present if a not in ORDER and not a.startswith('ctl_')]
+
+
+def label(name):
+    return LABEL.get(name, name)
 
 
 def garbled_forms(rows):
@@ -80,7 +86,7 @@ def main():
         lo, hi = wilson(silent, n)
         cn, ck, csil = summarize(rows, name, {'clean'})
         crashes = sum(1 for r in rows if r['out'][name] == 'X')
-        out.append(f'| {LABEL[name]} | {n} | {pct(k["E"], n)} | {pct(k["R"], n)} | **{pct(silent, n)}** '
+        out.append(f'| {label(name)} | {n} | {pct(k["E"], n)} | {pct(k["R"], n)} | **{pct(silent, n)}** '
                    f'[{100 * lo:.1f}-{100 * hi:.1f}] | {pct(ck["E"], cn)} | {csil} | {crashes} |')
     out += ['', '| applier | ' + ' | '.join(forms) + ' |', '|---|' + '---|' * len(forms)]
     for name in appliers(rows):
@@ -88,7 +94,7 @@ def main():
         for f in forms:
             _n, k, silent = summarize(rows, name, {f})
             cells.append(f'{k["E"]}/{k["R"]}/**{silent}**')
-        out.append(f'| {LABEL[name]} | ' + ' | '.join(cells) + ' |')
+        out.append(f'| {label(name)} | ' + ' | '.join(cells) + ' |')
     out.append('\ncells = exact / refused / **silent wrong** (accepted, file != the intended file).')
     print('\n'.join(out))
 

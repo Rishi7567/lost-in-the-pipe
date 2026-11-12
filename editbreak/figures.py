@@ -101,7 +101,7 @@ def fig_outcomes(res, forms, out):
         ax.text(1.02, y, f'{100 * s:.1f}%  [{100 * lo:.0f}-{100 * hi:.0f}]', va='center', ha='left', fontsize=8.5,
                 color=INK, fontweight='bold' if name == 'rt_ours' else 'normal')
     ax.set_yticks(range(len(data)))
-    ax.set_yticklabels([rep.LABEL[d[0]] for d in data], fontsize=8.5, color=INK)
+    ax.set_yticklabels([rep.label(d[0]) for d in data], fontsize=8.5, color=INK)
     for lbl, d in zip(ax.get_yticklabels(), data):
         if d[0] == 'rt_ours':
             lbl.set_fontweight('bold')
@@ -146,7 +146,7 @@ def fig_forms(res, forms, out):
     ax.set_xticks(range(len(forms)))
     ax.set_xticklabels([FORM_LABEL[f] for f in forms], fontsize=7.8, color=INK)
     ax.set_yticks(range(len(names)))
-    ax.set_yticklabels([rep.LABEL[n] for n in names], fontsize=8.5, color=INK)
+    ax.set_yticklabels([rep.label(n) for n in names], fontsize=8.5, color=INK)
     for lbl, n in zip(ax.get_yticklabels(), names):
         if n == 'rt_ours':
             lbl.set_fontweight('bold')

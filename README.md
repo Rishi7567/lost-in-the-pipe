@@ -57,6 +57,22 @@ python editbreak/figures_controls.py          # the layout check's own controls
 `--limit N` runs only the first N edits. On the first 40 edits (280 cases, 2,800 outcomes), a rerun matches the
 published run on every outcome.
 
+## Test your own edit applier
+
+Write one function, `apply(content, old, new)`, that returns the new file text or `None` to refuse. Then:
+
+```bash
+python editbreak/run.py --only strict --applier path/to/mine.py:apply --out results/mine.json
+python editbreak/report.py results/mine.json
+python editbreak/figures.py results/mine.json   # optional: its own Figures 4 and 5
+```
+
+`--only` skips the slow built-in fuzzy matchers, so a full run of your applier on all 3,416 cases takes seconds to
+minutes; the instrument controls always run and are checked before any number is printed. An exception inside your
+function is counted as a crash, never as a refusal. `examples/my_applier.py` is a ready template: it re-implements
+plain `str_replace`, so its outcomes must equal the built-in `strict` on every case (they do: 420 of 420 on the first
+60 edits).
+
 **About `rt`.** `rt` is part of the author's entry in the competition's main track, which runs until 2 December 2026,
 so its source will be added after that date. Its outcomes are in the published `results/results.json`, and
 `report.py` and `figures.py` read them from there.
