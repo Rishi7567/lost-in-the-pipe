@@ -12,5 +12,9 @@ projects under their own licences. Full licence texts are in `licenses/`.
 | cecelia `repair_escaped_newlines` | downloaded by `vendor/fetch_cecelia.py`, **not redistributed** | schienstockd/cecelia PR 1444, merge 35587b6359b8bbf2fd0d05de99f2baa29080f220 | GPL-3.0 |
 | Source-file snapshots the edits apply to | `data/files/` | fastapi/fastapi, psf/requests, Textualize/rich, encode/httpx at each task's base commit (`data/hunks.jsonl`) | MIT, Apache-2.0, MIT, BSD-3-Clause |
 
+`results/prevalence_scan.json` quotes short excerpts of flagged edit calls from
+[nebius/SWE-rebench-openhands-trajectories](https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories)
+(CC-BY-4.0, Nebius); the dataset itself is not redistributed.
+
 The vendored files are unmodified. The Aider applier is loaded by extracting its named top-level functions with
 `ast`, because its module imports the whole Aider application.

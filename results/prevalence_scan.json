@@ -1,0 +1,710 @@
+{
+ "source": "nebius/SWE-rebench-openhands-trajectories (Qwen3-Coder-480B-A35B-Instruct + OpenHands v0.54.0), CC-BY-4.0, https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories",
+ "detector": "prevalence/scan.py (validated on EditBreak: 0 false positives on 496 clean edits; recall 976/976 new-only, 488/488 both-strings)",
+ "stats": {
+  "trajectories": 67074,
+  "edit_calls": 712785,
+  "str_replace": 338895,
+  "create": 373890,
+  "flagged": {
+   "both|applied": 52,
+   "both|refused": 16,
+   "new_only|applied": 1
+  },
+  "trajectories_with_drift": 47,
+  "resolved_with_drift": 16
+ },
+ "confirmed_drift": 0,
+ "flagged_all_classified": [
+  {
+   "instance": "pre-commit__pre-commit-hooks-1095",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/pre-commit__pre-commit-hooks__5.0/comprehensive_test.py",
+   "old": "        (b'unique\\nUNIQUE\\ndifferent\\nDIFFERENT\\n', ['--unique', '--ignore-case'], b'unique\\ndifferent\\n', 1, 'Multiple distinct groups'),",
+   "new": "        (b'unique\\nUNIQUE\\ndifferent\\nDIFFERENT\\n', ['--unique', '--ignore-case'], b'different\\nunique\\n', 1, 'Multiple distinct groups'),",
+   "obs": "The file /workspace/pre-commit__pre-commit-hooks__5.0/comprehensive_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/pre-commit__pre-commit-hooks__5.0/comprehe",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "Zulko__moviepy-1492",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/Zulko__moviepy__2.0/moviepy/video/io/ffmpeg_reader.py",
+   "old": "        raise IOError(f\"Error pasing `ffmpeg -i` command output:\\n\\n{infos}\") from exc",
+   "new": "        raise IOError(f\"Error parsing `ffmpeg -i` command output:\\n\\n{infos}\") from exc",
+   "obs": "The file /workspace/Zulko__moviepy__2.0/moviepy/video/io/ffmpeg_reader.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/Zulko__moviepy__2.0/moviepy/video/io/ffmpeg_",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs)))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs)))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs)))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs)))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs)))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs)))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "dag-hammarskjold-library__dlx-402",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/dag-hammarskjold-library__dlx__1.4/tests/test_marcset.py",
+   "old": "    assert bibset.to_csv(write_id=True) == '1.001,1.245$a,1.245$b,1.245$c,1.520$a,2.520$a,1.650$a,1.710$a\\n1,This,is the,title,Description,Repeated subfield,Header,Another header\\n2,Another,is the,title,,,Header,'",
+   "new": "    assert bibset.to_csv(write_id=True) == '1.001,1.245$a,1.245$b,1.245$c,1.520$a,2.520$a,1.650$a,1.710$a\\n1,This,is the,title,Description,Another description||Repeated subfield,Header,Another header\\n2,Another,is the,title,,,Header,'",
+   "obs": "The file /workspace/dag-hammarskjold-library__dlx__1.4/tests/test_marcset.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/dag-hammarskjold-library__dlx__1.4/tests/",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "planetlabs__planet-client-python-1018",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/planetlabs__planet-client-python__2.2/final_verification.py",
+   "old": "    assert delivery_config == expected, f\"Config mismatch!\\nGot: {delivery_config}\\nExpected: {expected}\"",
+   "new": "    assert delivery_config == expected, f\"Config mismatch!\\nGot: {delivery_config}\\nExpected: {expected}\"",
+   "obs": "ERROR:\nInvalid `new_str` parameter:     assert delivery_config == expected, f\"Config mismatch!\\nGot: {delivery_config}\\nExpected: {expected}\". No replacement was performed. `new_str` and `old_str` mus",
+   "reason": "refused before matching: new_str identical to old_str (a no-op edit); its backslash-n pairs sit inside string literals, as ordinary code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "peterbe__hashin-88",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/peterbe__hashin__unknown/test_update_all.py",
+   "old": "        f.write('Django==4.2.0\\nrequests==2.31.0\\n')",
+   "new": "        f.write('Django==5.1\\nrequests==2.31.0\\n')",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `        f.write('Django==4.2.0\\nrequests==2.31.0\\n')` in lines [17, 50]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "pennmem__cmlreaders-185",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/pennmem__cmlreaders__0.9/comprehensive_test.py",
+   "old": "        (\"Leading/trailing spaces\", \" 1 LFG1 \\n 2 LFG2 \\n 3 LFG3 \"),",
+   "new": "        (\"Leading/trailing spaces\", \" 1 LFG1 \\n 2 LFG2 \\n 3 LFG3 \"),",
+   "obs": "ERROR:\nInvalid `new_str` parameter:         (\"Leading/trailing spaces\", \" 1 LFG1 \\n 2 LFG2 \\n 3 LFG3 \"),. No replacement was performed. `new_str` and `old_str` must be different.",
+   "reason": "refused before matching: new_str identical to old_str (a no-op edit); its backslash-n pairs sit inside string literals, as ordinary code (not drift)"
+  },
+  {
+   "instance": "pennmem__cmlreaders-185",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/pennmem__cmlreaders__0.9/comprehensive_test.py",
+   "old": "        (\"Leading/trailing spaces\", \" 1 LFG1 \\n 2 LFG2 \\n 3 LFG3 \"),",
+   "new": "        (\"Leading/trailing spaces\", \"1 LFG1 \\n2 LFG2 \\n3 LFG3 \"),",
+   "obs": "The file /workspace/pennmem__cmlreaders__0.9/comprehensive_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/pennmem__cmlreaders__0.9/comprehensive_test.py:\n   ",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "tox-dev__tox-2306",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/tox-dev__tox__4.0/tests/plugin/test_document_loaders.py",
+   "old": "    project = tox_project({\"tox.ini\": \"[testenv]\\npackage=skip\\ncommands=python -c 'print(1)'\\ndeps=requests\"})",
+   "new": "    project = tox_project({\"tox.ini\": \"[testenv]\\npackage=skip\\ncommands=python -c 'print(1)'\"})",
+   "obs": "The file /workspace/tox-dev__tox__4.0/tests/plugin/test_document_loaders.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/tox-dev__tox__4.0/tests/plugin/test_docume",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "dag-hammarskjold-library__dlx-402",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/dag-hammarskjold-library__dlx__1.4/tests/test_marcset.py",
+   "old": "    assert bibset.to_csv(write_id=True) == '1.001,1.245$a,1.245$b,1.245$c,1.520$a,2.520$a,1.650$a,1.710$a\\n1,This,is the,title,Description,Repeated subfield,Header,Another header\\n2,Another,is the,title,,,Header,'",
+   "new": "    assert bibset.to_csv(write_id=True) == '1.001,1.245$a,1.245$b,1.245$c,1.520$a,2.520$a,1.650$a,1.710$a\\n1,This,is the,title,Description,Another description;Repeated subfield,Header,Another header\\n2,Another,is the,title,,,Header,'",
+   "obs": "The file /workspace/dag-hammarskjold-library__dlx__1.4/tests/test_marcset.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/dag-hammarskjold-library__dlx__1.4/tests/",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-36",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.6/markdownify/__init__.py",
+   "old": "        return '\\n' + '\\n'.join(result_lines) + '\\n\\n'",
+   "new": "        return '\\n'.join(result_lines) + '\\n\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.6/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "burnash__gspread-502",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/burnash__gspread__3.0/comprehensive_test.py",
+   "old": "        ('\\t\\n', \"'\\\\t\\\\n'\"),  # Other whitespace",
+   "new": "        ('\\t\\n', \"'\\t\\n'\"),  # Other whitespace",
+   "obs": "The file /workspace/burnash__gspread__3.0/comprehensive_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/burnash__gspread__3.0/comprehensive_test.py:\n    44\t  ",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-34",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.6/comprehensive_test.py",
+   "old": "    assert md(\"<p>Text<!-- **bold** -->more</p>\") == \"Text more\\n\\n\"",
+   "new": "    assert md(\"<p>Text<!-- **bold** -->more</p>\") == \"Textmore\\n\\n\"",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.6/comprehensive_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-34",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.6/comprehensive_test.py",
+   "old": "    assert md(\"<p>Text<!---->more</p>\") == \"Text more\\n\\n\"",
+   "new": "    assert md(\"<p>Text<!---->more</p>\") == \"Textmore\\n\\n\"",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.6/comprehensive_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "pre-commit__pre-commit-hooks-944",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/pre-commit__pre-commit-hooks__4.4/comprehensive_test.py",
+   "old": "        (\"duplicate_lines\", b\"apple\\nbanana\\napple\\n\", b\"apple\\nbanana\\n\", True),",
+   "new": "        (\"duplicate_lines\", b\"apple\\nbanana\\napple\\n\", b\"apple\\napple\\nbanana\\n\", True),",
+   "obs": "The file /workspace/pre-commit__pre-commit-hooks__4.4/comprehensive_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/pre-commit__pre-commit-hooks__4.4/comprehe",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "sphinx-gallery__sphinx-gallery-625",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/sphinx-gallery__sphinx-gallery__0.5/test_last_notebook_cell.py",
+   "old": "    expected_content = \"# Report on the environment specs\\nimport scooby\\nscooby.Report()\"",
+   "new": "    expected_content = \"# Report on the environment specs\\nimport scooby\\n\\nscooby.Report()\"  # Note the double \\n",
+   "obs": "The file /workspace/sphinx-gallery__sphinx-gallery__0.5/test_last_notebook_cell.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/sphinx-gallery__sphinx-gallery__0.5",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-167",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_tables.py",
+   "old": "    assert md(table_with_caption) == 'TEXT\\n\\nCaption\\n| Firstname | Lastname | Age |\\n| --- | --- | --- |\\n\\n'",
+   "new": "    assert md(table_with_caption) == 'TEXT\\n\\nCaption\\n\\n| Firstname | Lastname | Age |\\n| --- | --- | --- |\\n\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_tables.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "tox-dev__tox-2529",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/tox-dev__tox__3.27/reproduce_issue.py",
+   "old": "            mock_venv._pcall = Mock(return_value=b\"test-package==1.0\\n\\npkg1==1.0\\npkg2==2.0\")",
+   "new": "            mock_venv._pcall = Mock(return_value=\"test-package==1.0\\n\\npkg1==1.0\\npkg2==2.0\")",
+   "obs": "The file /workspace/tox-dev__tox__3.27/reproduce_issue.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/tox-dev__tox__3.27/reproduce_issue.py:\n    58\t            # ",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "asottile__pyupgrade-289",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/asottile__pyupgrade__2.2/test_metaclass_reproduction.py",
+   "old": "            expected = '\\n\\nclass C:\\n    pass\\n'",
+   "new": "            expected = '\\nclass C:\\n    pass\\n'",
+   "obs": "The file /workspace/asottile__pyupgrade__2.2/test_metaclass_reproduction.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/asottile__pyupgrade__2.2/test_metaclass_re",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "tox-dev__tox-2793",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/tox-dev__tox__4.1/debug_test.py",
+   "old": "    ini = \"[tox]\\nskip_missing_interpreters=false\\n[testenv]\\npackage=skip\\nbase_python=missing-interpreter\"",
+   "new": "    ini = \"[tox]\\n[testenv]\\npackage=skip\\nbase_python=missing-interpreter\"",
+   "obs": "The file /workspace/tox-dev__tox__4.1/debug_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/tox-dev__tox__4.1/debug_test.py:\n    14\tdef debug_test():\n    15\t ",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "sphinx-gallery__sphinx-gallery-480",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/sphinx-gallery__sphinx-gallery__0.3/test_comprehensive_verification.py",
+   "old": "        expected_patterns=[\"docstring\\n\\nFirst section\", \"First section\\n\\nSecond section\"]",
+   "new": "        expected_patterns=[\"docstring\\n\\nFirst section\"]",
+   "obs": "The file /workspace/sphinx-gallery__sphinx-gallery__0.3/test_comprehensive_verification.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/sphinx-gallery__sphinx-gall",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "sphinx-gallery__sphinx-gallery-480",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/sphinx-gallery__sphinx-gallery__0.3/test_comprehensive_verification.py",
+   "old": "        expected_patterns=[\"plots.\\n\\nAnalysis\"]",
+   "new": "        expected_patterns=[\"plots.\\n\\n.. code-block::\"]",
+   "obs": "The file /workspace/sphinx-gallery__sphinx-gallery__0.3/test_comprehensive_verification.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/sphinx-gallery__sphinx-gall",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "facelessuser__pymdown-extensions-1929",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/facelessuser__pymdown-extensions__9.9/focused_test.py",
+   "old": "        ('    line1\\n\\nline2\\n', 'line1\\n\\nline2;\\n</code></pre>'), # Internal structure preserved",
+   "new": "        ('    line1\\n\\nline2\\n', 'line1\\n\\nline2\\n</code></pre>'), # Internal structure preserved",
+   "obs": "The file /workspace/facelessuser__pymdown-extensions__9.9/focused_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/facelessuser__pymdown-extensions__9.9/focuse",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-171",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_conversions.py",
+   "old": "    assert md('<blockquote><p>Hello</p><p>Hello again</p></blockquote>') == '\\n> Hello\\n> \\n> Hello again\\n\\n'",
+   "new": "    assert md('<blockquote><p>Hello</p><p>Hello again</p></blockquote>') == '\\n> Hello\\n>\\n> Hello again\\n\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_conversions.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdown",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-171",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py",
+   "old": "    assert md('<ol start=\"1234\"><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ol>') == '\\n\\n1234. first para\\n      \\n      second para\\n1235. third para\\n      \\n      fourth para\\n'",
+   "new": "    assert md('<ol start=\"1234\"><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ol>') == '\\n\\n1234. first para\\n\\n      second para\\n1235. third para\\n\\n      fourth para\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__0",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-171",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py",
+   "old": "    assert md('<ul><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ul>') == '\\n\\n* first para\\n  \\n  second para\\n* third para\\n  \\n  fourth para\\n'",
+   "new": "    assert md('<ul><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ul>') == '\\n\\n* first para\\n\\n  second para\\n* third para\\n\\n  fourth para\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__0",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "wemake-services__wemake-python-styleguide-2619",
+   "kind": "new_only",
+   "verdict": "applied",
+   "path": "/workspace/wemake-services__wemake-python-styleguide__0.17/test_final_verification.py",
+   "old": "    mixed_code = '''f'query:\"{query}\"'\nf'other:\"{other}\"'\nregular1 = \"common\"\nregular2 = \"common\" \nregular3 = \"common\"\nregular4 = \"common\"'''",
+   "new": "    mixed_code = \"f'query:\\\"{query}\\\"'\\nf'other:\\\"{other}\\\"'\\nregular1 = \\\"common\\\"\\nregular2 = \\\"common\\\"\\nregular3 = \\\"common\\\"\\nregular4 = \\\"common\\\"\"",
+   "obs": "The file /workspace/wemake-services__wemake-python-styleguide__0.17/test_final_verification.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/wemake-services__wemake",
+   "reason": "applied: a deliberate rewrite into an escaped one-line string (not drift)"
+  },
+  {
+   "instance": "rosscdh__mkdocs-markdownextradata-plugin-29",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/rosscdh__mkdocs-markdownextradata-plugin__0.1/final_verification.py",
+   "old": "    test_content = \"# Test [[title]]\\n[# Comment #]\\nContent: {#framework}\"",
+   "new": "    test_content = \"# Test <<title>>\\n[# Comment #]\\nContent: {#framework}\"",
+   "obs": "The file /workspace/rosscdh__mkdocs-markdownextradata-plugin__0.1/final_verification.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/rosscdh__mkdocs-markdownextrad",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "Zulko__moviepy-1492",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/Zulko__moviepy__2.0/moviepy/video/io/ffmpeg_reader.py",
+   "old": "        raise IOError(f\"Error pasing `ffmpeg -i` command output:\\n\\n{infos}\") from exc",
+   "new": "        raise IOError(f\"Error parsing `ffmpeg -i` command output:\\n\\n{infos}\") from exc",
+   "obs": "The file /workspace/Zulko__moviepy__2.0/moviepy/video/io/ffmpeg_reader.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/Zulko__moviepy__2.0/moviepy/video/io/ffmpeg_",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "pre-commit__pre-commit-hooks-386",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/pre-commit__pre-commit-hooks__2.2/final_comprehensive_test.py",
+   "old": "        (\"Mixed endings with quotes\", b'x = \"hello\"\\r\\ny = \"world\"\\n', True),",
+   "new": "        (\"Mixed endings with quotes\", b'x = \"hello\"\\r\\ny = \"world\"\\n', True),",
+   "obs": "ERROR:\nInvalid `new_str` parameter:         (\"Mixed endings with quotes\", b'x = \"hello\"\\r\\ny = \"world\"\\n', True),. No replacement was performed. `new_str` and `old_str` must be different.",
+   "reason": "refused before matching: new_str identical to old_str (a no-op edit); its backslash-n pairs sit inside string literals, as ordinary code (not drift)"
+  },
+  {
+   "instance": "tox-dev__tox-2011",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/tox-dev__tox__3.23/src/tox/pytest.py",
+   "old": "            \"{}{}{}\".format(k, \"\\n\" if \"\\n\" in v else \": \", v)",
+   "new": "            f\"{k}{'\\n' if '\\n' in v else ': '}{v}\"",
+   "obs": "The file /workspace/tox-dev__tox__3.23/src/tox/pytest.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/tox-dev__tox__3.23/src/tox/pytest.py:\n   327\t\n   328\t    def ",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "Duke-GCB__DukeDSClient-317",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/Duke-GCB__DukeDSClient__3.1/comprehensive_test.py",
+   "old": "        (\"whitespace_only\", \"   \\n\\t\\n  \"),",
+   "new": "        (\"whitespace_only\", \"   \\n\\n  \"),",
+   "obs": "The file /workspace/Duke-GCB__DukeDSClient__3.1/comprehensive_test.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/Duke-GCB__DukeDSClient__3.1/comprehensive_test.p",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "stfc__PSyclone-2687",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/stfc__PSyclone__2.5/debug_where.py",
+   "old": "    reader = FortranStringReader(\"WHERE (corrh < 1.0)\\n  corrh = 1.05\\nEND WHERE\")",
+   "new": "    reader = FortranStringReader(\"WHERE (corrh < 1.0)\\n  corrh = 1.05\\nEND WHERE\\n\")",
+   "obs": "The file /workspace/stfc__PSyclone__2.5/debug_where.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/stfc__PSyclone__2.5/debug_where.py:\n    20\t    sched = Schedule",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-167",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_tables.py",
+   "old": "    assert md(table_with_caption) == 'TEXT\\n\\nCaption\\n| Firstname | Lastname | Age |\\n| --- | --- | --- |\\n\\n'",
+   "new": "    assert md(table_with_caption) == 'TEXT\\n\\nCaption\\n\\n| Firstname | Lastname | Age |\\n| --- | --- | --- |\\n\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_tables.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "OSeMOSYS__otoole-71",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/OSeMOSYS__otoole__0.8/src/otoole/read_strategies.py",
+   "old": "            logger.debug(\"\\n%s\\n\", dict_of_dataframes[name])",
+   "new": "            logger.debug(\"\\n%s\\n\", dict_of_dataframes.get(name, \"Not processed\"))",
+   "obs": "The file /workspace/OSeMOSYS__otoole__0.8/src/otoole/read_strategies.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/OSeMOSYS__otoole__0.8/src/otoole/read_strategi",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "drvinceknight__nbchkr-19",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/drvinceknight__nbchkr__unknown/src/nbchkr/utils/__init__.py",
+   "old": "                new_source = re.sub(pattern=solution_regex, repl=r\"\\1\\n\\n\\3\", string=source)",
+   "new": "                new_source = re.sub(pattern=solution_regex, repl=r\"\\1\\n\\n\\3\", string=source)",
+   "obs": "ERROR:\nInvalid `new_str` parameter:                 new_source = re.sub(pattern=solution_regex, repl=r\"\\1\\n\\n\\3\", string=source). No replacement was performed. `new_str` and `old_str` must be differen",
+   "reason": "refused before matching: new_str identical to old_str (a no-op edit); its backslash-n pairs sit inside string literals, as ordinary code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-167",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_tables.py",
+   "old": "    assert md(table_with_caption) == 'TEXT\\n\\nCaption\\n| Firstname | Lastname | Age |\\n| --- | --- | --- |\\n\\n'",
+   "new": "    assert md(table_with_caption) == 'TEXT\\n\\nCaption\\n\\n| Firstname | Lastname | Age |\\n| --- | --- | --- |\\n\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_tables.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "spdx__tools-python-799",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/spdx__tools-python__0.8/src/spdx_tools/spdx/parser/tagvalue/parser.py",
+   "old": "    @grammar_rule(\"annotator : ANNOTATOR PERSON_VALUE\\n| TOOL_VALUE\\n| ORGANIZATION_VALUE\")",
+   "new": "    @grammar_rule(\"annotator : ANNOTATOR PERSON_VALUE\\n| ANNOTATOR TOOL_VALUE\\n| ANNOTATOR ORGANIZATION_VALUE\")",
+   "obs": "The file /workspace/spdx__tools-python__0.8/src/spdx_tools/spdx/parser/tagvalue/parser.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/spdx__tools-python__0.8/src/",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-178",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py",
+   "old": "        return '\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "new": "        return '\\n\\n```%s\\n%s\\n```\\n' % (code_language, text)",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-120",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.13/markdownify/__init__.py",
+   "old": "        return '%s\\n\\n' % text if text else ''",
+   "new": "        return '\\n\\n%s\\n\\n' % text if text else ''",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.13/markdownify/__init__.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownif",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "'\\n<hr>\\n'.join(map(_report(q, report_style), qs))",
+   "new": "'\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `'\\n<hr>\\n'.join(map(_report(q, report_style), qs))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "'\\n<hr>\\n'.join(map(_report(q, report_style), qs))))",
+   "new": "'\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `'\\n<hr>\\n'.join(map(_report(q, report_style), qs))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "zopefoundation__Products.ZSQLMethods-35",
+   "kind": "both",
+   "verdict": "refused",
+   "path": "/workspace/zopefoundation__Products.ZSQLMethods__3.13/src/Shared/DC/ZRDB/Search.py",
+   "old": "             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))",
+   "new": "             '\\n<hr>\\n'.join(map(lambda obj: _report(obj, report_style), qs))))",
+   "obs": "ERROR:\nNo replacement was performed. Multiple occurrences of old_str `             '\\n<hr>\\n'.join(map(_report(q, report_style), qs))))` in lines [92, 115]. Please ensure it is unique.",
+   "reason": "refused, multiple occurrences: old_str exists verbatim in the file (not drift)"
+  },
+  {
+   "instance": "sqlfluff__sqlfluff-884",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/sqlfluff__sqlfluff__0.4/src/sqlfluff/core/dialects/dialect_ansi.py",
+   "old": "        (\"newline\", \"regex\", r\"\\r\\n|\\n\", dict(type=\"newline\")),",
+   "new": "        (\"newline\", \"regex\", r\"\\r\\n|\\n\", dict(type=\"newline\", is_whitespace=True)),",
+   "obs": "The file /workspace/sqlfluff__sqlfluff__0.4/src/sqlfluff/core/dialects/dialect_ansi.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/sqlfluff__sqlfluff__0.4/src/sql",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-171",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py",
+   "old": "    assert md('<ol start=\"1234\"><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ol>') == '\\n\\n1234. first para\\n      \\n      second para\\n1235. third para\\n      \\n      fourth para\\n'",
+   "new": "    assert md('<ol start=\"1234\"><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ol>') == '\\n\\n1234. first para\\n\\n      second para\\n1235. third para\\n\\n      fourth para\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__0",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-171",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py",
+   "old": "    assert md('<ul><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ul>') == '\\n\\n* first para\\n  \\n  second para\\n* third para\\n  \\n  fourth para\\n'",
+   "new": "    assert md('<ul><li><p>first para</p><p>second para</p></li><li><p>third para</p><p>fourth para</p></li></ul>') == '\\n\\n* first para\\n\\n  second para\\n* third para\\n\\n  fourth para\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_lists.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdownify__0",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "matthewwithanm__python-markdownify-171",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/matthewwithanm__python-markdownify__0.14/tests/test_conversions.py",
+   "old": "    assert md('<blockquote><p>Hello</p><p>Hello again</p></blockquote>') == '\\n> Hello\\n> \\n> Hello again\\n\\n'",
+   "new": "    assert md('<blockquote><p>Hello</p><p>Hello again</p></blockquote>') == '\\n> Hello\\n\\n> Hello again\\n\\n'",
+   "obs": "The file /workspace/matthewwithanm__python-markdownify__0.14/tests/test_conversions.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/matthewwithanm__python-markdown",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "sqlfluff__sqlfluff-866",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/sqlfluff__sqlfluff__0.4/src/sqlfluff/core/dialects/dialect_ansi.py",
+   "old": "        (\"newline\", \"regex\", r\"\\r\\n|\\n\", dict(type=\"newline\")),",
+   "new": "        (\"newline\", \"regex\", r\"\\r\\n|\\n\", dict(type=\"newline\", is_whitespace=True)),",
+   "obs": "The file /workspace/sqlfluff__sqlfluff__0.4/src/sqlfluff/core/dialects/dialect_ansi.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/sqlfluff__sqlfluff__0.4/src/sql",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  },
+  {
+   "instance": "conan-io__conan-14727",
+   "kind": "both",
+   "verdict": "applied",
+   "path": "/workspace/conan-io__conan__2.0/test_profile_hb_feature.py",
+   "old": "        save(os.path.join(profiles_dir, \"prod\"), \"[settings]\\nos=Windows\\ncompiler=Visual Studio\\ncompiler.version=16\")",
+   "new": "        save(os.path.join(profiles_dir, \"prod\"), \"[settings]\\nos=Windows\\ncompiler=msvc\\ncompiler.version=192\")",
+   "obs": "The file /workspace/conan-io__conan__2.0/test_profile_hb_feature.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/conan-io__conan__2.0/test_profile_hb_feature.py:\n ",
+   "reason": "applied: old_str matched the file verbatim, so the escapes are really in the code (not drift)"
+  }
+ ]
+}

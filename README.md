@@ -77,6 +77,16 @@ plain `str_replace`, so its outcomes must equal the built-in `strict` on every c
 so its source will be added after that date. Its outcomes are in the published `results/results.json`, and
 `report.py` and `figures.py` read them from there.
 
+## Is it everyone's bug? A scan of 712,785 public edit calls
+
+`prevalence/scan.py` looks for the same newline drift in 67,074 public trajectories of a different model and
+harness ([nebius/SWE-rebench-openhands-trajectories](https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories),
+Qwen3-Coder-480B + OpenHands, CC-BY-4.0). Its detector is validated on EditBreak first (`python prevalence/scan.py
+validate`: 0 false positives on 496 clean edits, every drifted edit caught). It flagged 69 of 712,785 edit calls, and
+all 69 are legitimate (code that really contains `\n`, or a deliberate rewrite): **zero drift**. Every flagged call
+and its classification are in `results/prevalence_scan.json`. The loop in the writeup needs both a channel that
+escapes the template and a model that imitates it.
+
 ## Also here
 
 - `results/channel_stats.json`: how many of the agent's real edit calls (live runs 5 to 13) carried a channel
