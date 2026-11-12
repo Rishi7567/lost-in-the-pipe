@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+vendor/cecelia_agent_text.py
+results/rerun*.json
+figures/rerun_*

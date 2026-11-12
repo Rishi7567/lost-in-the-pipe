@@ -1,0 +1,68 @@
+{
+ "runs": {
+  "runs/live5": {
+   "calls": 6,
+   "artifact_I1": 1,
+   "artifact_I2": 1,
+   "classes_I2": {
+    "code_trailing_backslash": 1
+   },
+   "refused_calls": 0
+  },
+  "runs_v7/live10": {
+   "calls": 6,
+   "artifact_I1": 2,
+   "artifact_I2": 2,
+   "classes_I2": {
+    "code_trailing_backslash": 2
+   },
+   "refused_calls": 1
+  },
+  "runs_v7/live8": {
+   "calls": 1,
+   "artifact_I1": 0,
+   "artifact_I2": 0,
+   "classes_I2": {},
+   "refused_calls": 0
+  },
+  "runs_v8/live11": {
+   "calls": 5,
+   "artifact_I1": 0,
+   "artifact_I2": 0,
+   "classes_I2": {},
+   "refused_calls": 0
+  },
+  "runs_v8/live12": {
+   "calls": 2,
+   "artifact_I1": 0,
+   "artifact_I2": 0,
+   "classes_I2": {},
+   "refused_calls": 1
+  },
+  "runs_v8/live13": {
+   "calls": 24,
+   "artifact_I1": 16,
+   "artifact_I2": 20,
+   "classes_I2": {
+    "replace_as_divider": 7,
+    "code_trailing_backslash": 3,
+    "template_copy": 2,
+    "marker_escape": 13
+   },
+   "refused_calls": 4
+  }
+ },
+ "total_calls": 44,
+ "blocks": 47,
+ "disagreements": [],
+ "replay_status_before_S1": {
+  "ok": 18,
+  "refused": 19,
+  "nochange": 10
+ },
+ "replay_status_after_S1": {
+  "ok": 36,
+  "refused": 8,
+  "nochange": 3
+ }
+}
